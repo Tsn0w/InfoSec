@@ -1,0 +1,12 @@
+We can see that after the first 2 lines we set ECX and EDX to be zero,
+(a xor a == 0 always).
+now we check if DL (which are the 8 lower bits of EDX, so they are all zeros) is equal to the data in the memory unit at the addres of ESI.
+
+We know that NULL-TERMINATOR at ASCII code is all zeros, which is just what we got at DL (after xoring).
+
+Therefore, we can see that we check where is the NULL-TERNIMATOR from a given addres, which is ESI, which usually used as an source index pointer to a String or Char.
+
+Now we can see that we increase ECX and ESI which mean that the code will search the NULL-TERMINATOR from the start index, ESI, and will stop when he finds him, moreover he will save the length of the String at to ECX.
+
+In conclution we can clearly see that the code will find what is the 
+String length from a given start index till the String ends.
