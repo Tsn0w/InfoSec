@@ -1,0 +1,62 @@
+                                                 ,/                                
+                                                //                                 
+                                              ,//                                  
+                                  ___   /|   |//                                   
+                              `__/\_ --(/|___/-/                                   
+                           \|\_-\___ __-_`- /-/ \.                                 
+                          |\_-___,-\_____--/_)' ) \                                
+                           \ -_ /     __ \( `( __`\|                               
+                           `\__|      |\)\ ) /(/|                                  
+   ,._____.,            ',--//-|      \  |  '   /                                  
+  /     __. \,          / /,---|       \       /                                   
+ / /    _. \  \        `/`_/ _,'        |     |                                    
+|  | ( (  \   |      ,/\'__/'/          |     |                                    
+|  \  \`--, `_/_------______/           \(   )/                                    
+| | \  \_. \,                            \___/\                                    
+| |  \_   \  \                                 \                                   
+\ \    \_ \   \   /                             \                                  
+ \ \  \._  \__ \_|       |                       \                                 
+  \ \___  \      \       |                        \                                
+   \__ \__ \  \_ |       \                         |                               
+   |  \_____ \  ____      |                        |                               
+   | \  \__ ---' .__\     |        |               |                               
+   \  \__ ---   /   )     |        \              /                                
+    \   \____/ / ()(      \          `---_       /|                                
+     \__________/(,--__    \_________.    |    ./ |                                
+       |     \ \  `---_\--,           \   \_,./   |                                
+       |      \  \_ ` \    /`---_______-\   \\    /                                
+        \      \.___,`|   /              \   \\   \                                
+         \     |  \_ \|   \              (   |:    |                               
+          \    \      \    |             /  / |    ;                               
+           \    \      \    \          ( `_'   \  |                                
+            \.   \      \.   \          `__/   |  |                                
+              \   \       \.  \                |  |                                
+               \   \        \  \               (  )                                
+                \   |        \  |              |  |                                
+                 |  \         \ \              I  `                                
+                 ( __;        ( _;            ('-_';                               
+                 |___\        \___:            \___:                               
+
+What I did is to jump into the big dead zone when we got the small dead zone.
+At the big dead zone what i did to check if the first two chars at the string are '#!' when comparing eax to 0x2123, becuase we load to eax beofore the the two bytes that include them and set rest zero with the opcode" "movzx eax, word ptr[eax]"
+If are eqaul then i push to stack the string without "#!" and call system because it will be as argument for system and then will jump to the secotion when we read new line.
+Otherwise we will just to the regular code wich will just print it.
+
+Here is the code:
+mov eax, 0x08048633
+jmp eax
+lea  eax, [ebp-0x40c]
+movzx eax, word ptr[eax]
+cmp eax, 0x2123
+jne Dont_Be_sad
+lea eax, [ebp-0x40c+2]
+push eax
+mov eax, 0x08048460
+call eax
+mov eax, 0x08048662
+jmp eax
+
+Dont_Be_sad:
+mov eax, 0x0804863a
+jmp eax
+

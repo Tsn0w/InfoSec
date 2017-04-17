@@ -1,0 +1,57 @@
+And again UNICORN$$$$$$, sorry for long ;)
+(sublime)
+                                               ,;((((((((,,              
+                                             ,((((((((((((((__           
+                                           .))))))))'''')))))/-       \|/
+                                          ,((((((`     .  ''))\\\\\\==-*-
+     ,),                                  )))))'    .-;    o |((      /|\
+   ~);^((_,                               '((((;    (  \    |` )         
+ ~';'<););,%        .-~~~------_____     _))))((,   |   |   |            
+~')`);v)(~~%%      /           ::`  ~---~ `)))(((    ;   ;(_o            
+ ~ ;'`;(    %%,__,/|:::`       :`         ````''''    ;                  
+     '-`     '----`|:`      \     (                _   |                 
+                    \        \                 |    ~\/\______           
+                      \;;;`   )-,--___          \  ';;\____.;;~\         
+                        \    /\;;\    ~~~~~------';______;_  \\ \        
+                        /,;;/   ; \                        | |  \\       
+                       <_  '-----\,'\                      ; |  _>)      
+                         ~~~~~~~~~;~\\                     _|| |_/       
+                                   ~~,)                   |_/`           
+                                   /~/                                   
+                                   ~~                          
+
+- Assumed data is what we read from file.
+- Assumed num is the given nubmer [ Mine 191]
+In order to change the file to be vaild we need that after we done looping for     (ascii code of data[0]) times the (ascii code of data[1]) should be equal to num after xoring every iteration with the correct ascii code of data.
+
+Thus, i changed the ascii code of data[0] to (length(data) -3) beause we got to index i+2 when we xor.
+Then i looped for (ascii code of data[0]) times and did the xor with the correct cell at data becasue xor is the inverse function of itself.
+
+At the end the buffer will looks as follow:
+data[0] = ascii code of length of data - 3.
+data[1] = the ascii code which will be equal to the ascii code after looping and xoring.
+for i which holds length(data) > i > 1.
+data[i] = will stay the same.
+
+and this will ensure us that the newfile will be valid when we will run msgcheck.
+
+              ,,))))))));,                                               
+           __)))))))))))))),                                             
+\|/       -\(((((''''((((((((.                                           
+-*-==//////((''  .     `)))))),                                          
+/|\      ))| o    ;-.    '(((((                                  ,(,     
+         ( `|    /  )    ;))))'                               ,_))^;(~   
+            |   |   |   ,))((((_     _____------~~~-.        %,;(;(>';'~ 
+            o_);   ;    )))(((` ~---~  `::           \      %%~~)(v;(`('~
+                  ;    ''''````         `:       `:::|\,__,%%    );`'; ~ 
+                 |   _                )     /      `:|`----'     `-'     
+           ______/\/~    |                 /        /                    
+         /~;;.____/;;'  /          ___--,-(   `;;;/                      
+        / //  _;______;'------~~~~~    /;;/\    /                        
+       //  | |                        / ;   \;;,\                        
+      (<_  | ;                      /',/-----'  _>                       
+       \_| ||_                     //~;~~~~~~~~~                         
+           `\_|                   (,~~                                   
+                                   \~\                                   
+                                    ~~     
+

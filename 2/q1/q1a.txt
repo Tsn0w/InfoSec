@@ -1,0 +1,78 @@
+sorry for long explaintion, hope these unicorns will make you happy :D
+P.S. I suggest you to open it in sublime :)
+
+                               ,|                                         
+                             //|                              ,|          
+                           //,/                             -~ |          
+                         // / |                         _-~   /  ,        
+                       /'/ / /                       _-~   _/_-~ |        
+                      ( ( / /'                   _ -~     _-~ ,/'         
+                       \~\/'/|             __--~~__--\ _-~  _/,           
+               ,,)))))));, \/~-_     __--~~  --~~  __/~  _-~ /            
+            __))))))))))))));,>/\   /        __--~~  \-~~ _-~             
+           -\(((((''''(((((((( >~\/     --~~   __--~' _-~ ~|              
+  --==//////((''  .     `)))))), /     ___---~~  ~~\~~__--~               
+          ))| @    ;-.     (((((/           __--~~~'~~/                   
+          ( `|    /  )      )))/      ~~~~~__\__---~~__--~~--_            
+             |   |   |       (/      ---~~~/__-----~~  ,;::'  \         , 
+             o_);   ;        /      ----~~/           \,-~~~\  |       /| 
+                   ;        (      ---~~/         `:::|      |;|      < > 
+                  |   _      `----~~~~'      /      `:|       \;\_____//  
+            ______/\/~    |                 /        /         ~------~   
+          /~;;.____/;;'  /          ___----(   `;;;/                      
+         / //  _;______;'------~~~~~    |;;/\    /                        
+        //  | |                        /  |  \;;,\                        
+       (<_  | ;                      /',/-----'  _>                       
+        \_| ||_                     //~;~~~~~~~~~                         
+            `\_|                   (,~~                                   
+                                    \~\                                   
+                                     ~~                               
+
+The Code:
+first this we do is to check if the users gives us an arugment from command line.
+if not given will exit(-1) with error message: "USAGE: %s <msg-file>\n"
+
+then we will try to open the file with the argument filename at the same directory.
+if an error occurred will exit(-1) with error message: "ERROR: failed to open %s\n" , where at %s there is the filename.
+
+then we will try to read from the opened file at most.
+if and error occurred will exit(-1) with error message:  "ERROR: failed to read %s\n", where at %s there is the filename.
+
+now after we read from file at most 1024 bytes we will do as follow:
+- We will assume that we read 1024 bytes to buffer name buff.
+- We will assume that the counter of iteration name is i.
+- We will assume that the name of the nubmer given is num.
+Now the algorithm:
+we will run i loop till i < (ascii code of buff[0]) and after each loop will increase i by 1.
+inside the loop we will change the value of num as to num xor buff[i+2]
+(if buff size is <= i+2 we will exit with 1).
+then when we will exit from the loop we will check if num is equal to ascii code of data[1] and retrun 1 if so and 0 otherwise.
+
+
+
+                                         |,                               
+          |,                              |\\                             
+          | ~-                             \,\\                           
+        ,  \   ~-_                         | \ \\                         
+        | ~-_\_   ~-_                       \ \ \'\                       
+         '\, ~-_     ~- _                   '\ \ ) )                      
+           ,\_  ~-_ /--__~~--__             |\'\/~/                       
+            \ ~-_  ~\__  ~~--  ~~--__     _-~\/ ,;(((((((,,               
+             ~-_ ~~-/  ~~--__        \   /\<,;((((((((((((((__            
+              |~ ~-_ '~--__   ~~--     \/~< ))))))))'''')))))/-           
+               ~--__~~/~~  ~~---___     \ ,((((((`     .  ''))\\\\\\==--  
+                   \~~'~~~--__           \)))))     .-;    @ |((          
+            _--~~--__~~---__/__~~~~~      \(((      (  \    |` )          
+ ,         /  '::;,  ~~-----__\~~~---      \)       |   |   |             
+ |\       |  /~~~-,/           \~~----      \        ;   ;(_o             
+ < >      |;|      |:::`         \~~---      )        ;                   
+  \\_____/;/       |:`      \      '~~~~----`      _   |                  
+   ~------~         \        \                 |    ~\/\______            
+                      \;;;`   )----___          \  ';;\____.;;~\          
+                        \    /\;;|    ~~~~~------';______;_  \\ \         
+                        /,;;/  |  \                        | |  \\        
+                       <_  '-----\,'\                      ; |  _>)       
+                         ~~~~~~~~~;~\\                     _|| |_/        
+                                   ~~,)                   |_/`            
+                                   /~/                                    
+                                   ~~                                     
