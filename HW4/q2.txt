@@ -1,0 +1,16 @@
+As start I wrote the shellcode.
+Here I will explain little on the shellcode itself
+beacuse the full documentation is at the shellcode.asm
+as comment near to each line.
+So first I opened socket with prototcol 0, type SOCK_STREAM
+and family AF_INET beacuse under these constraint we can open socket as we want in this ex.
+
+Then as said as at class I called dup2 for STDERR, STDOUT, SDTIN to out socket fd beacuse we want to let the server Commands and we will see the resuls.
+
+Then I called connect inorder to connect to our server at the PORT 1337 as asked in the ex, with port 127.0.0.1 (because we open the server on localhost).
+
+Then shellcode ran and open terminal for us as we wanted :D
+
+Note:
+- When I said I called <func_name> I mean that I called to her address at the plt table, done with help of IDA.
+- The address we returned was the middle of the nope_slide +_ becuase the place we load the program can change, And I found it using IDA which is 0xbfff0e04 (where I jump). The len of the nop_slide is 942, which i found big enough.

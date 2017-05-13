@@ -1,0 +1,8 @@
+I entered lots a' as input the server (1043 exactly) and before it ( at the 4 bytes), how much we ment to read (again 1043).
+Then i noiticed that I ran over the return address of the program which will case the SegFault.
+
+***************************************************************
+
+At these ex sadly I will bring very less, even none ascii art of cool stuff becuase I got lack of time  but please dont be so sad, I know you will be ok
+
+***************************************************************
