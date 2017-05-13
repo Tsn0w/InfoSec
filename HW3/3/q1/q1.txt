@@ -1,0 +1,86 @@
+As we can see at the code we got a security problem when we check the size of password given.
+We can see that beacuse the function allocate memory for 20 chars at the function check_password when one of the is the null-terminator, a.k.a '\0'.
+According to that the password should be at lenght at most 9 (becuase we got 10 as delfaut: "Thisisasalt"), but as we can see the if condition we exit if the passord given is length bigger then 10.
+Thus, we can inster another char to the password.
+Luckly, when I checked at IDA I noticed that the 10's char at override the auth variable, so inorder to change his value I insert the 10's char to be the the char with ASCII code 1.
+and the we will have the auth to run every command we want with high premissions (root).
+
+Sorry for long text, my English is very bad as you can see, as a compensation here some 
+ _____                   _____      _       _                         
+/  ___|                 |  __ \    (_)     | |                      _ 
+\ `--.  _____  ___   _  | |  \/_ __ _ _ __ | |__   ___  _ __  ___  (_)
+ `--. \/ _ \ \/ / | | | | | __| '__| | '_ \| '_ \ / _ \| '_ \/ __|    
+/\__/ /  __/>  <| |_| | | |_\ \ |  | | |_) | | | | (_) | | | \__ \  _ 
+\____/ \___/_/\_\\__, |  \____/_|  |_| .__/|_| |_|\___/|_| |_|___/ (_)
+                  __/ |              | |                              
+                 |___/               |_|                            
+
+            //           //
+           ///          ///
+          ////         ////
+          |////       /////
+          |))//;     /)))//;
+         /)))))/;   /)))))/;
+     .---`,))))/;  /)))))))/;
+ __--\/6-  \`))/; |)))))))/;
+(----/    \\\``;  |))))))/;
+   ~/-\  \\\\\``   \))))))/;
+       \\\\\\\\`    |)))))/;
+       |\\\\\\\\___/))))))/;__-------.
+       //////|  %%_/))))))/;           \___,
+      |||||||\   \%%%%%%%;:              \_. \
+      |\\\\\\\\\                        |  | |
+       \\\\\\\                          |  | |
+        |\\\\               __|        /   / /
+        | \\__\     \___----  |       |   / /
+        |    / |     >     \   \      \  / /
+        |   /  |    /       \   \      >/ /  ,,
+        |   |  |   |         |   |    // /  //,
+        |   |  |   |         |   |   /| |   |\\,
+     _--'   _--'   |     _---_---'  |  \ \__/\|/
+    (-(-===(-(-(===/    (-(-=(-(-(==/   \____/
+
+
+        _________________________________
+    \____________________________( ( )
+      \___________________________( (|    _____
+        \________________________( ( |   /VVVVO\_____
+          \________________________( /  |VVVVVV/     \
+            \_____________________( /   |VVVVV(_-----\|
+              \__________________( /    |VVVVVV|
+               _\_______________( /     /VVVVVV|
+              _\________________( \    /VVVVVVV|
+       _______\__________________( \  /VVVVVVVV|  
+    __/      \___________________(  \/VVVVVVVVV|
+   /=|                                VVVVVVVVV|
+  // |       |                      \VVVVVVVV|V|
+ //  |       |_______________________|VVVVVVV|/
+||    \     /                         \VVVVVV|
+||    /   /                             \VVVV\
+||   /   /                                \VVV\
+ \\  \   \                                 \VVV\
+  V    \  \                                  \==\
+  V     \  \__                                \==\__
+         (____)>                             ( ---- )
+
+
+                           _
+                          _)\.-.
+         .-.__,___,_.-=-. )\`  a`\_
+     .-.__\__,__,__.-=-. `/  \     `\
+     {~,-~-,-~.-~,-,;;;;\ |   '--;`)/
+      \-,~_-~_-,~-,(_(_(;\/   ,;/
+       ",-.~_,-~,-~,)_)_)'.  ;;(
+         `~-,_-~,-~(_(_(_(_\  `;\
+   ,          `"~~--,)_)_)_)\_   \
+   |\              (_(_/_(_,   \  ;
+   \ '-.       _.--'  /_/_/_)   | |
+    '--.\    .'          /_/    | |
+        ))  /       \      |   /.'
+       //  /,        | __.'|  ||
+      //   ||        /`    (  ||
+     ||    ||      .'       \ \\
+     ||    ||    .'_         \ \\
+      \\   //   / _ `\        \ \\__
+       \'-'/(   _  `\,;        \ '--:,
+        `"`  `"` `-,,;         `"`",,;

@@ -1,0 +1,144 @@
+In order to insert the ShellCode I did as asked in the question:
+
+1. I noticed with the help of GDB that the buffer, which gets out the password argument is at: 0xbfffe049, this address is where our input starts but basically it starts 10 bytes before, so it starts 0xbfffe040.
+
+2. Then, I saw, with again help of GDB, what is the offset from the beggining of the buffer to the return address, which is 68 and the end of the return address is at 71 including, because the return address got the size of 4 bytes.
+
+3. Now, I created the ShellCode.
+
+The ShellCode:
+basically, what I did was excetly what we did in class, with little fixes.
+first I xor'ed eax with him self inorder to set him zero.
+Then I set at al 0x0b which is the nubmer of the SysCall we want, execve.
+Then, as we did in class, pop ebx.
+Then as we can see i set ecx & edx to zeros, pointer to null-terminator, We did so becuase when we run execve all we need is to open bash without any arguenmts, so when we will run the execve only with the path of bash we will open the bash as we want.
+Then what I did was to set the @'s char to null-terminator so we will have the path to the bash as we need, "/bin/bash\0x00".
+Then, I send and 0x80 interrupt as we did in class, in order to run the SysCall we want.
+After that I did what we did in class and just change the .String to .Ascii beacuse .String enters null-terminator at the end while .Ascii do not as we want.
+
+4. Now, when i finished to write the ShellCode, I saw that it got the length of 31, and when i check the return address is at offset 68 from the start, '2.'. Thus, I inserted nop's (ASCII code 90) till the total size is 68, and only then set the return address as I saw at '1.' But I inserted it end to start beacuse it is little endian.
+
+So sorry for long text, as you know I am noob at english so take some
+   _____                                _ _             _                     
+  / ____|                         /\   | (_)           | |                  _ 
+ | |     _ __ __ _ _____   _     /  \  | |_  __ _  __ _| |_ ___  _ __ ___  (_)
+ | |    | '__/ _` |_  / | | |   / /\ \ | | |/ _` |/ _` | __/ _ \| '__/ __|    
+ | |____| | | (_| |/ /| |_| |  / ____ \| | | (_| | (_| | || (_) | |  \__ \  _ 
+  \_____|_|  \__,_/___|\__, | /_/    \_\_|_|\__, |\__,_|\__\___/|_|  |___/ (_)
+                        __/ |                __/ |                            
+                       |___/                |___/                             
+
+                       .--.  .--.
+                      /    \/    \
+                     /   .-.  .-. |
+                    /   |  _\|  _\|
+              .----'    |/` ||/` ||
+            _/    ,--    \_0/ \_0/|
+         .-'     / `)              \       .-""""""--.
+        /          /              .-'-----/           \
+       /          /`\                          () ()  /
+      /          |   '-.___.                          |
+     ;           \      |/ `\                         /
+    /             |.---.`.-. '.___              ___.-'
+  /'              |     \   \ \ |/`'-.,____..-``|/
+                  \  ,   \   \ \`,       |/     `
+                   \/|    \   \ /|       `
+                    \/     `   ;-`'.   ,
+                     `'-.   ,   '.  '-/|    ,
+                         './|     '-. ``;--/|-.
+                           '`'--.,___) /|.-'"` )
+                      '--._          `"`    .-'
+                         .-`'-._          .'
+                       .'       ``''---''`
+
+
+               _.'^^'.    
+    _      _.-' ((@)) '.   ./\/\/\/\/\/\,.---.__
+ ..'o'...-'      ~~~    '~/\/\/\/\/\/\__.---.   `-._
+:                          /\/\/\/\,-'              `-.__   
+^VvvvvvvvvvvVvVv                   |                     `-._
+  ;^^^^^^^^^^^`      /             `\        /               `-._
+   ```````````````'.`                `\     (                    `'-._
+            .-----'`   /\              `\    )--.______.______._______`/ 
+           (((------'``  `'--------'`(((----'
+
+
+
+                _ ___                /^^\ /^\  /^^\_
+    _          _@)@) \            ,,/ '` ~ `'~~ ', `\.
+  _/o\_ _ _ _/~`.`...'~\        ./~~..,'`','',.,' '  ~:
+ / `,'.~,~.~  .   , . , ~|,   ,/ .,' , ,. .. ,,.   `,  ~\_
+( ' _' _ '_` _  '  .    , `\_/ .' ..' '  `  `   `..  `,   \_
+ ~V~ V~ V~ V~ ~\ `   ' .  '    , ' .,.,''`.,.''`.,.``. ',   \_
+  _/\ /\ /\ /\_/, . ' ,   `_/~\_ .' .,. ,, , _/~\_ `. `. '.,  \_
+ < ~ ~ '~`'~'`, .,  .   `_: ::: \_ '      `_/ ::: \_ `.,' . ',  \_
+  \ ' `_  '`_    _    ',/ _::_::_ \ _    _/ _::_::_ \   `.,'.,`., \-,-,-,_,_,
+   `'~~ `'~~ `'~~ `'~~  \(_)(_)(_)/  `~~' \(_)(_)(_)/ ~'`\_.._,._,'_;_;_;_;_;
+
+
+                                             ___.-----.______
+                                   ___.-----'::::::::::::::::`---.___
+                _.--._            (:::;,-----'~~~~~`----::::::::::.. `-.
+   _          .'_---. `--.__       `~~'                 `~`--.:::::`..  `..
+  ; `-.____.-' ' {0} ` `--._`---.____                         `:::::::: : ::
+ :_^              ~   `--.___ `----.__`----.____                ~::::::.`;':
+  :`--.__,-----.___(         `---.___ `---.___  `----.___         ~|;:,' : |
+   `-.___,---.____     _,        ._  `----.____ `----.__ `-----.___;--'  ; :
+                  `---' `.  `._    `))  ,  , , `----.____.----.____   --' :|
+                        / `,--.\    `.` `  ` ` ,   ,  ,     _.--   `-----'|'
+ _.~~~~~~._____    __./'_/'     :   .:----.___ ` ` ` ``  .-'      , ,  :::'
+                 ///--\;  ____  :   :'    ____`---.___.--::     , ` ` ::'
+                 `'           _.'   (    /______     (   `-._   `-._,-'
+    ()  ()                 .-' __.-//     /_______---'       `-._   `.
+  * *(o)'      ~~~        /////    `'       ~~~~~~      ~~ ______;   ::.
+  `\ )( /*                `'`'                            /_______   _.'
+    {()}      ,     ~~~                  ~~~~~~~~           /___.---'  --__
+     !|       `                                              ~~~
+  ~~~~~~~~
+
+           _
+            \
+             \        
+             |\       
+             /|       
+            /'|       
+          ,' //                         
+        ,'..`/                        
+       /   '/                                                          _...._.---._
+     /:   ,'                                                         .' ,--. ,--.  \
+   ,'    ,                                                           | /... /...|  |,..._
+  ,'    /                                   _..---------..__         \.\_O_/  O /  '     \
+ .'  _, /                 .---..._       ,-'  __.-.....__   '-  ___.-----._'---'     ,'  |
+ |-`'  (                  |       `--..,'_,-''   '.     `''"-._( .-.'.--.         _.'   /
+ |      \                 |  ,.__     /,'  |      |      \     \ | / |  /      ,,'  __ /
+ |     .`.               /  .'  _)--..'    |       |     '\     \`  ..--:`     _.--' \
+ |   .'  .-.__           |  |,-' _.-\      |       |      |     |`\''''''''_.-'   ,' (__...'
+  \         ,-`''-- =--::|   \-'|    |     |       |      |     | `'.....-' .,:-'  |  \
+   `.    ,  /  /     '`. |   |  |    |     |       |      |     |  \__.-` `..      \   \
+    '.  /  /  /         '|   |  |    [     |       |       |    |    ,       '._    |  |
+      `.  /  | .--------'    `-. |   '     |       |       |    |,L______       `--..   \
+        ``.  | \               |-^---''".  |      |       .'    |.'      ``-..._         \
+           `.-..\.__...---....,'-.....--'`'"-........_____|.. `'                `'`--..../ 
+
+                       .--.  .--.
+                       /    \/    \
+                      | .-.  .-.   \
+                      |/_  |/_  |   \
+                      || `\|| `\|    `----.
+                      |\0_/ \0_/    --,    \_
+    .--"""""-.       /              (` \     `-.
+   /          \-----'-.              \          \
+   \  () ()                         /`\          \
+   |                         .___.-'   |          \
+   \                        /` \|      /           ;
+    `-.___             ___.' .-.`.---.|             \
+       \| ``-..___,.-'`\| / /   /     |              `\
+        `      \|      ,`/ /   /   ,  /
+                `      |\ /   /    |\/
+                 ,   .'`-;   '     \/
+            ,    |\-'  .'   ,   .-'`
+          .-|\--;`` .-'     |\.'
+         ( `"'-.|\ (___,.--'`'
+          `-.    `"`          _.--'
+             `.          _.-'`-.
+               `''---''``       `.
